@@ -1,5 +1,5 @@
-import { StyleSheet } from "react-native";
-import {theme} from '@/theme';
+import { StyleSheet } from "react-native"
+import { theme } from "@/theme"
 
 export const styles = StyleSheet.create({
   container: {
@@ -12,14 +12,20 @@ export const styles = StyleSheet.create({
     lineHeight: 44,
     marginTop: 42,
   },
-  subTitle: {
+  subtitle: {
     fontFamily: theme.fonts.family.regular,
   },
-  mensage: {
+  message: {
     fontSize: theme.fonts.size.body.md,
     fontFamily: theme.fonts.family.regular,
+    color: theme.colors.gray_400,
     marginTop: 12,
     marginBottom: 38,
-    color: theme.colors.gray_400,
   },
-});
+  ingredient: {
+    flexWrap: "wrap",
+    flexDirection: "row",
+    paddingBottom: 200,
+    gap: 12,
+  },
+})

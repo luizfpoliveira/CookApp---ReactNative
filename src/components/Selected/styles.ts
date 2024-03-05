@@ -20,6 +20,6 @@ export const styles = StyleSheet.create({
   label: {
     color: theme.colors.white,
     fontSize: theme.fonts.size.body.sm,
-    fontFamily: theme.fonts.family.regular
+    fontFamily: theme.fonts.family.regular,
   },
 })

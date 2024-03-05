@@ -1,50 +1,29 @@
-import { ScrollView, View, Alert } from "react-native";
-import React, { useState } from "react";
+import { ScrollView } from "react-native";
+
+import { services } from "@/services";
+
 import { styles } from "./styles";
-import Ingredient from "../Ingredient";
-import Selected from "../Selected";
+import { Ingredient, IngredientsProps } from "@/components/Igredient";
 
-export default function Ingredients() {
-  const [selected, setSelected] = useState<string[]>([]);
+type Props = {
+  ingredients: IngredientsProps[];
+};
 
-  function handleToggleSelected(value: string) {
-    if (selected.includes(value)) {
-      return setSelected((state) => state.filter((item) => item !== value));
-    }
-    setSelected((state) => [...state, value]);
-    console.log(selected);
-  }
-
-  function handleClearSelected() {
-    Alert.alert("Limpar", "Deseja limpar tudo?", [
-      { text: "Não", style: "cancel" },
-      { text: "Sim", onPress: () => setSelected([]) },
-    ]);
-  }
-
+export function Ingredients({ ingredients }: Props) {
   return (
-    <View>
-      <ScrollView
-        showsVerticalScrollIndicator={false}
-        contentContainerStyle={styles.container}
-      >
-        {Array.from({ length: 30 }).map((item, index) => (
-          <Ingredient
-            key={index}
-            name="tomate"
-            image=""
-            selected={selected.includes(String(index))}
-            onPress={() => handleToggleSelected(String(index))}
-          />
-        ))}
-      </ScrollView>
-      {selected.length > 0 && (
-        <Selected
-          quantity={selected.length}
-          onClear={handleClearSelected}
-          onSearch={() => {}}
+    <ScrollView
+      horizontal
+      style={styles.container}
+      contentContainerStyle={styles.ingredientsContent}
+      showsHorizontalScrollIndicator={false}
+    >
+      {ingredients.map((ingredient) => (
+        <Ingredient
+          key={ingredient.name}
+          name={ingredient.name}
+          image={`${services.storage.imagePath}/${ingredient.image}`}
         />
-      )}
-    </View>
+      ))}
+    </ScrollView>
   );
 }
