@@ -1,9 +1,7 @@
 import { useEffect, useState } from "react";
 import { View, Text, ScrollView, Alert } from "react-native";
 import { router } from "expo-router";
-
 import { services } from "@/services";
-
 import { styles } from "./styles";
 import { Loading } from "@/components/Loading";
 import { Selected } from "@/components/Selected";
@@ -34,7 +32,7 @@ export default function Home() {
   }
 
   useEffect(() => {
-    services.ingredientes
+    services.ingredients
       .findAll()
       .then(setIngredients)
       .finally(() => setIsLoading(false));
